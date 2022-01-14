@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello WeatherController!{% endblock %}
+{% block title %}Weather API{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,36 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/mnt/0F5DBD7A03E9A4B9/Fort/Develop/Symfony/WeatherByAPI/src/Controller/Weather/WeatherController.php'|file_link(0) }}">src/Controller/Weather/WeatherController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/mnt/0F5DBD7A03E9A4B9/Fort/Develop/Symfony/WeatherByAPI/templates/weather/weather/weather.html.twig'|file_link(0) }}">templates/weather/weather/index.html.twig</a></code></li>
-    </ul>
+    {{ form_start(form) }}
+        <div class="container">
+            <div class="row">
+                <div class="col col-lg-2">
+                    {{ form_label(form.townName, 'Fuel Type', { 'label_attr': { 'class': 'form-label' } }) }}
+                </div>
+                <div class="col-sm">
+                    {{ form_widget(form.townName, { 'label_attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-2">
+                    {{ form_label(form.weatherResource, 'Power', { 'label_attr': { 'class': 'form-label' } }) }}
+                </div>
+                <div class="col">
+                    {{ form_widget(form.weatherResource, { 'label_attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-lg-2">
+                    {{ form_label(form.weatherParams, 'Torque', { 'label_attr': { 'class': 'form-label' } }) }}
+                </div>
+                <div class="col">
+                    {{ form_widget(form.weatherParams, { 'label_attr': { 'class': 'form-control' } }) }}
+                </div>
+            </div>
+        </div>
+    <input type="submit" value="submit">
+        <a href="{{ path('#') }}">Get Weather</a>
+    </div>
+    {{ form_end(form) }}
 </div>
 {% endblock %}

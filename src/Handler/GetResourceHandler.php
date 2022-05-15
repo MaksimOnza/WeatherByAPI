@@ -49,4 +49,18 @@ class GetResourceHandler
 
         return $temperature;
     }
+
+    public function setData($form, $urlParameters)
+    {
+        $data = $this->getData([
+            'city'       => $form->getData()->getCity(),
+            'resource'   => $form->getData()->getResource(),
+            'query_name' => $urlParameters['query'],
+            'end_point'  => $urlParameters['end_point'],
+            'name_id'    => $urlParameters['name_id'],
+            'access_key' => $urlParameters['access_key'],
+        ]);
+
+        return $data;
+    }
 }

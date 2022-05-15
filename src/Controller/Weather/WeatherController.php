@@ -41,14 +41,7 @@ class WeatherController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             if ($resource = $form->get('resource')->getNormData()) {
                 $urlParameters = $resource->getUriParameters();
-                $data          = $this->handler->getData([
-                    'city'       => $form->getData()->getCity(),
-                    'resource'   => $form->getData()->getResource(),
-                    'query_name' => $urlParameters['query'],
-                    'end_point'  => $urlParameters['end_point'],
-                    'name_id'    => $urlParameters['name_id'],
-                    'access_key' => $urlParameters['access_key'],
-                ]);
+                $data          = $this->handler->setData($form, $urlParameters);
 
                 if (empty($data)) {
                     return $this->render('weather/get_weather.html.twig', [
@@ -76,15 +69,5 @@ class WeatherController extends AbstractController
         return $this->render('weather/get_weather.html.twig', [
             'form' => $form->createView(),
         ]);
-    }
-
-    function get_json($data)
-    {
-        $data = json_decode($data, true);
-        $json_data = array(
-            "temp"=> (int)(($data['main']['temp'])-273),
-            "desc"=> $data['weather'][0]['description']
-        );
-        return $json_data;
     }
 }

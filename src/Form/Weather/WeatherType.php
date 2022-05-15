@@ -5,10 +5,10 @@ namespace App\Form\Weather;
 use App\Entity\Weather\WeatherParams;
 use App\Entity\WeatherResources\WeatherResource;
 use App\Repository\WeatherResources\WeatherResourceRepository;
-use Doctrine\DBAL\Types\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -42,12 +42,13 @@ class WeatherType extends AbstractType
                 'expanded' => true,
                 'multiple' => true,
                 'choices'  => [
-                    'Wind'        => WeatherParams::WEATHER_PARAMS['wind'],
-                    'Pressure'    => WeatherParams::WEATHER_PARAMS['pressure'],
-                    'Temperature' => WeatherParams::WEATHER_PARAMS['temperature'],
-                    'Description' => WeatherParams::WEATHER_PARAMS['description'],
+                    'Wind'        => WeatherResource::WEATHER_PARAMS['wind'],
+                    'Pressure'    => WeatherResource::WEATHER_PARAMS['pressure'],
+                    'Temperature' => WeatherResource::WEATHER_PARAMS['temperature'],
+                    'Description' => WeatherResource::WEATHER_PARAMS['description'],
                 ]
-            ]);
+            ])
+        ;
     }
 
     /**

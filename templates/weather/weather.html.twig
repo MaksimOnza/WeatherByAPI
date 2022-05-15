@@ -29,15 +29,15 @@
             </div>
             <div class="row">
                 <div class="col col-lg-2">
-                    {{ form_label(form.weatherParams, 'Torque', { 'label_attr': { 'class': 'form-label' } }) }}
+                    {{ form_label(form.weatherResource.params, 'Torque', { 'label_attr': { 'class': 'form-label' } }) }}
                 </div>
                 <div class="col">
-                    {{ form_widget(form.weatherParams, { 'label_attr': { 'class': 'form-control' } }) }}
+                    {{ form_widget(form.weatherResource.params, { 'label_attr': { 'class': 'form-control' } }) }}
                 </div>
             </div>
         </div>
     <input type="submit" value="submit">
-        <a href="{{ path('#') }}">Get Weather</a>
+        <a href="#">Get Weather</a>
     </div>
     {{ form_end(form) }}
 </div>

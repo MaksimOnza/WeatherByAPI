@@ -59,7 +59,7 @@ class Weather
     /**
      * @return WeatherResource|null
      */
-    public function getWeatherResource(): ?OpenWeatherMap
+    public function getWeatherResource(): ?WeatherResource
     {
         return $this->weatherResource;
     }

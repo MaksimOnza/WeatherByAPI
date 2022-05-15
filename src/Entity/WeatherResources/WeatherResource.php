@@ -12,6 +12,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class WeatherResource
 {
+    const WEATHER_PARAMS = [
+        'wind'        => 'WIND',
+        'pressure'    => 'PRESSURE',
+        'temperature' => 'TEMPERATURE',
+        'description' => 'DESCRIPTION'
+    ];
+
+    const WEATHER_RESOURCES = [
+      'OWM' => 'api.openweathermap.org',
+      'WS'  => 'api.weatherstack.com'
+    ];
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -35,15 +47,22 @@ class WeatherResource
     private $site;
 
     /**
-     * @ORM\OneToOne(targetEntity=WeatherParams::class, cascade={"persist", "remove"})
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $params;
-
-    /**
      * @ORM\OneToOne(targetEntity=Weather::class, mappedBy="weatherResource", cascade={"persist", "remove"})
      */
     private $weather;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $params = [];
+
+    /**
+     * @param string $nameResource
+     */
+    public function __construct(string $nameResource = 'Select resource')
+    {
+        $this->nameResource = $nameResource;
+    }
 
     /**
      * @return string
@@ -122,26 +141,6 @@ class WeatherResource
     }
 
     /**
-     * @return WeatherParams|null
-     */
-    public function getParams(): ?WeatherParams
-    {
-        return $this->params;
-    }
-
-    /**
-     * @param WeatherParams $params
-     *
-     * @return $this
-     */
-    public function setParams(WeatherParams $params): self
-    {
-        $this->params = $params;
-
-        return $this;
-    }
-
-    /**
      * @return Weather|null
      */
     public function getWeather(): ?Weather
@@ -167,6 +166,26 @@ class WeatherResource
         }
 
         $this->weather = $weather;
+
+        return $this;
+    }
+
+    /**
+     * @return array|null
+     */
+    public function getParams(): ?array
+    {
+        return $this->params;
+    }
+
+    /**
+     * @param array $params
+     *
+     * @return $this
+     */
+    public function setParams(array $params): self
+    {
+        $this->params = $params;
 
         return $this;
     }

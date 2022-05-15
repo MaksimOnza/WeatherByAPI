@@ -9,7 +9,6 @@ class OpenwetherMap extends WeatherResource implements WeatherHandleData
       'query'      => 'q',
       'name_id'    => 'appid',
       'end_point'  => self::END_POINT,
-      'access_key' => '55fc030a936d5e205ca578d8a03011ba',
     ];
 
     /**
@@ -26,6 +25,15 @@ class OpenwetherMap extends WeatherResource implements WeatherHandleData
      * @var string $city
      */
     private $city;
+
+    /**
+     * @param string $accessKey
+     * @param string $nameResource
+     */
+    public function __construct(string $accessKey, string $nameResource)
+    {
+        parent::__construct($accessKey, $nameResource);
+    }
 
     /**
      * @return string

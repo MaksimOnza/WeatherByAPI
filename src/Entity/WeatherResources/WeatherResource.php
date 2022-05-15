@@ -58,10 +58,13 @@ class WeatherResource
 
     /**
      * @param string $nameResource
+     * @param string $accessKey
      */
-    public function __construct(string $nameResource = 'Select resource')
+    public function __construct(string $accessKey, string $nameResource = 'Select resource')
     {
         $this->nameResource = $nameResource;
+
+        $this->setApiKey($accessKey);
     }
 
     /**

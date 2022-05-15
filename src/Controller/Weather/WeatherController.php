@@ -35,13 +35,15 @@ class WeatherController extends AbstractController
     public function index(Request $request): Response
     {
         $form = $this
-            ->createForm(GetWeatherType::class, new GetWeather())
+            ->createForm(GetWeatherType::class, new GetWeather(), [
+                'accessKey' => $this->getParameter('openweathermap')
+            ])
             ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             if ($resource = $form->get('resource')->getNormData()) {
                 $urlParameters = $resource->getUriParameters();
-                $data          = $this->handler->setData($form, $urlParameters);
+                $data          = $this->handler->setData($form, $urlParameters, $resource->getApiKey());
 
                 if (empty($data)) {
                     return $this->render('weather/get_weather.html.twig', [

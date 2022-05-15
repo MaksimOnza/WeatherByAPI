@@ -25,8 +25,12 @@ class GetWeatherType extends AbstractType
             ->add('resource', ChoiceType::class, [
                 'placeholder' => 'Select Resources',
                 'choices'     => [
-                    'OpenWeatherMap' => (new OpenwetherMap(WeatherResource::WEATHER_RESOURCES['OWM'])),
-                    'WeatherStack'   => (new WeatherStack(WeatherResource::WEATHER_RESOURCES['WS'])),
+                    'OpenWeatherMap' => (
+                        new OpenwetherMap($options['accessKey'],
+                            WeatherResource::WEATHER_RESOURCES['OWM'])),
+                    'WeatherStack'   => (
+                        new WeatherStack($options['accessKey'],
+                            WeatherResource::WEATHER_RESOURCES['WS'])),
                 ]
             ]);
     }
@@ -35,6 +39,7 @@ class GetWeatherType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => GetWeather::class,
+            'accessKey' => '',
         ]);
     }
 }

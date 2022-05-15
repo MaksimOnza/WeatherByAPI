@@ -20,7 +20,7 @@ class WeatherRepository extends ServiceEntityRepository
     }
 
     // /**
-    //  * @return Weather[] Returns an array of Weather objects
+    //  * @return weather[] Returns an array of weather objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class WeatherRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Weather
+    public function findOneBySomeField($value): ?weather
     {
         return $this->createQueryBuilder('w')
             ->andWhere('w.exampleField = :val')
